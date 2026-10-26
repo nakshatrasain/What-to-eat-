@@ -1,0 +1,110 @@
+/* ==========================================================
+   Design tokens — every component reads from here.
+   Light source: top-left. All shadows cast down-right.
+   Angle family: 135° gradients, 6° signature tilt.
+   ========================================================== */
+:root {
+  /* Color — warm kitchen palette, one accent (chilli-saffron) */
+  --bg: #fbf6ee;
+  --surface-1: #ffffff;
+  --surface-2: #f4ecdf;
+  --surface-3: #ebdfcc;
+  --text-1: #2a1f17;
+  --text-2: #5e4f43;
+  --text-3: #76665a;
+  --accent: #c2410c;
+  --accent-hover: #a8380a;
+  --accent-soft: #fce6d6;
+  --on-accent: #ffffff;
+  --success: #3f7d3a;
+  --success-soft: #e3f0dc;
+  --warning: #9a6512;
+  --error: #b42318;
+  --line: rgba(42, 31, 23, 0.1);
+  --veg: #3f7d3a;
+  --egg: #c58a12;
+  --nonveg: #b42318;
+
+  /* Type — Fraunces display, DM Sans text. Scale 1.25 */
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-text: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-xs: 0.8rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.563rem;
+  --fs-2xl: 1.953rem;
+  --fs-3xl: 2.441rem;
+  --fs-4xl: 3.052rem;
+  --lh-body: 1.5;
+  --lh-display: 1.1;
+
+  /* Spacing — 4/8 scale only */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+
+  /* Radius — outer = inner + padding keeps curves concentric */
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-full: 999px;
+
+  /* Elevation — one light, top-left */
+  --shadow-1: 2px 3px 8px rgba(70, 40, 15, 0.07);
+  --shadow-2: 4px 8px 24px rgba(70, 40, 15, 0.11);
+  --shadow-3: 8px 16px 48px rgba(70, 40, 15, 0.18);
+
+  /* Motion */
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+  --dur-reveal: 640ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Geometry */
+  --angle: 135deg;
+  --tilt: -6deg;
+  --max-w: 1080px;
+  --tap: 44px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #16110d;
+    --surface-1: #211a15;
+    --surface-2: #2b221c;
+    --surface-3: #3a2e25;
+    --text-1: #f6eee4;
+    --text-2: #cdbfb0;
+    --text-3: #a8978a;
+    --accent: #f08a4b;
+    --accent-hover: #f5a06b;
+    --accent-soft: #3d2416;
+    --on-accent: #1a120c;
+    --success: #8cc47f;
+    --success-soft: #1f2e1b;
+    --line: rgba(246, 238, 228, 0.1);
+    --veg: #8cc47f;
+    --egg: #e8b84a;
+    --nonveg: #f08070;
+    --shadow-1: 2px 3px 8px rgba(0, 0, 0, 0.3);
+    --shadow-2: 4px 8px 24px rgba(0, 0, 0, 0.38);
+    --shadow-3: 8px 16px 48px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-reveal: 0ms;
+  }
+}
