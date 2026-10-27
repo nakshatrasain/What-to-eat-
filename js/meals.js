@@ -76,3 +76,64 @@ window.TAGS = {
   grain: ["roti", "rice", "riceYellow", "paratha", "thepla", "khichdi", "poha", "upma", "daliya", "idli", "dosa", "toast", "chilla"],
   veg: ["salad", "sabziGreen", "sabziYellow", "bhindi", "lauki", "baingan", "paneerGreen", "dalGreen", "sprouts", "upma"],
 };
+
+// Chatpata & spicy additions — still home-cookable, still balanced where possible.
+MEALS.breakfast.push(
+  { name: "Misal Pav", diet: "veg", protein: 18, time: 35, items: ["Spicy moth misal|misal", "Ladi pav|pav", "Onion & lemon|salad"], tip: "Top with farsan and lemon right before eating so it stays crunchy." },
+  { name: "Chana Chaat Bowl", diet: "veg", protein: 15, time: 15, items: ["Chana chaat|chaat", "Dahi|dahi", "Adrak chai|chai"], tip: "Boiled chana + onion, tomato, chaat masala, lemon. Done." },
+  { name: "Paneer Bhurji Pav", diet: "veg", protein: 21, time: 20, items: ["Masala paneer bhurji|paneerBhurji", "Butter pav|pav", "Adrak chai|chai"], tip: "Add pav bhaji masala to the bhurji for that street taste." },
+  { name: "Mumbai Anda Bhurji Pav", diet: "egg", protein: 19, time: 15, items: ["Spicy anda bhurji|eggBhurji", "Butter pav|pav", "Adrak chai|chai"], tip: "Green chilli, lots of onion, a pinch of pav bhaji masala." },
+);
+MEALS.lunch.push(
+  { name: "Pav Bhaji", diet: "veg", protein: 14, time: 40, items: ["Bhaji with masoor dal|pavBhaji", "Butter pav|pav", "Onion & lemon|salad"], tip: "Mash a cup of cooked masoor dal into the bhaji — nobody notices, protein goes up." },
+  { name: "Amritsari Chole Kulche", diet: "veg", protein: 18, time: 45, items: ["Amritsari chole|chole", "Boondi raita|raita", "Tawa kulcha|kulcha", "Onion salad|salad"], tip: "Kulcha dough is just atta-maida with curd — rest it 30 minutes." },
+  { name: "Chilli Paneer & Fried Rice", diet: "veg", protein: 22, time: 35, items: ["Chilli paneer|chilliPaneer", "Hot garlic dal|dal", "Veg fried rice|riceYellow"], tip: "Use day-old rice for fried rice — it won't go mushy." },
+  { name: "Achari Paneer Thali", diet: "veg", protein: 23, time: 40, items: ["Achari paneer|paneerRed", "Dal tadka|dal", "Phulka roti|roti", "Jeera rice|rice"], tip: "Fennel, mustard, kalonji, methi — the achaar spices do all the work." },
+  { name: "Andhra Tomato Pappu", diet: "veg", protein: 15, time: 35, items: ["Tomato pappu|dalRed", "Spicy aloo fry|sabziYellow", "Steamed rice|rice", "Papad|papad"], tip: "Go generous on the red chilli and tamarind — that's the point." },
+  { name: "Chicken Chettinad", diet: "nonveg", protein: 32, time: 50, items: ["Chettinad chicken|chicken", "Rasam dal|dalRed", "Phulka roti|roti", "Steamed rice|rice"], tip: "Dry-roast pepper, fennel and red chillies fresh — it makes the dish." },
+  { name: "Egg Masala Fry", diet: "egg", protein: 20, time: 25, items: ["Egg masala fry|eggCurry", "Dal fry|dal", "Phulka roti|roti", "Steamed rice|rice"], tip: "Score the boiled eggs so the masala gets in." },
+);
+MEALS.dinner.push(
+  { name: "Ragda Pattice", diet: "veg", protein: 15, time: 40, items: ["White peas ragda|chole", "Imli chutney|chutneyRed", "Hari chutney|chutneyGreen", "Aloo pattice|puri"], tip: "Pressure-cook the white peas with haldi; mash a few for body." },
+  { name: "Chole Puri", diet: "veg", protein: 16, time: 45, items: ["Spicy chole|chole", "Dahi|dahi", "Aam ka achaar|achaar", "Puri|puri"], tip: "Mix a spoon of sooji into puri dough so they stay puffed." },
+  { name: "Chilli Chicken & Roti", diet: "nonveg", protein: 30, time: 35, items: ["Chilli chicken|chilliChicken", "Dal fry|dal", "Phulka roti|roti"], tip: "Cornflour-coat and pan-fry — no deep frying needed." },
+  { name: "Mirchi ka Salan & Dal", diet: "veg", protein: 14, time: 40, items: ["Mirchi ka salan|mirchiSalan", "Dal tadka|dal", "Phulka roti|roti", "Jeera rice|rice"], tip: "Use big bhavnagri chillies — flavour without killing anyone." },
+  { name: "Masala Pav Bhaji Night", diet: "veg", protein: 16, time: 40, items: ["Paneer pav bhaji|pavBhaji", "Butter pav|pav", "Onion & lemon|salad"], tip: "Grate some paneer on top — instant protein." },
+);
+
+// Cravings. "quick" (≤20 min) and "protein" (≥20g) are worked out automatically.
+window.MOODS = {
+  chatpata: { label: "Chatpata", words: ["chatpata", "chatpati", "chat pata", "chatpate", "chaat", "chat", "tangy", "khatta", "khatti", "street", "tasty", "zesty", "sour"] },
+  spicy: { label: "Spicy", words: ["spicy", "teekha", "tikha", "teekhi", "tikhi", "mirchi", "mirch", "hot", "fiery", "masaledar", "jhaal", "spice"] },
+  light: { label: "Light", words: ["light", "halka", "halki", "healthy", "simple", "sick", "diet", "easy on", "not heavy"] },
+  comfort: { label: "Comfort", words: ["comfort", "ghar ka", "cozy", "cosy", "sukoon", "homely", "mood off", "sad", "rainy", "baarish"] },
+  quick: { label: "Quick", words: ["quick", "jaldi", "fast", "lazy", "tired", "thaka", "instant", "short", "15 min", "10 min"] },
+  protein: { label: "High protein", words: ["protein", "gym", "workout", "muscle", "gains", "fitness"] },
+};
+
+(function () {
+  const F = {
+    // breakfast
+    "Paneer Besan Chilla": ["spicy"], "Peanut Poha & Sprouts": ["chatpata"], "Idli Sambar": ["chatpata", "light"],
+    "Pesarattu (Moong Dosa)": ["spicy"], "Sprouts Chaat & Milk": ["chatpata", "light"], "Paneer Sandwich": ["chatpata"],
+    "Egg Bhurji & Toast": ["spicy"], "Masala Omelette": ["spicy"], "Poha with Boiled Eggs": ["chatpata"],
+    "Moong Dal Chilla": ["light"], "Vegetable Upma": ["light"], "Masala Oats & Curd": ["light"], "Vegetable Daliya": ["light"],
+    "Aloo Paratha & Curd": ["comfort"], "Paneer Paratha": ["comfort"], "Methi Thepla & Curd": ["comfort"],
+    "Misal Pav": ["spicy", "chatpata"], "Chana Chaat Bowl": ["chatpata", "light"], "Paneer Bhurji Pav": ["spicy", "chatpata"], "Mumbai Anda Bhurji Pav": ["spicy", "chatpata"],
+    // lunch
+    "Rajma Chawal": ["comfort"], "Lobia Curry": ["light"], "Palak Paneer Thali": ["light"], "Chole with Roti": ["spicy", "chatpata"], "Dal Tadka Thali": ["comfort"], "Kadhi Chawal": ["chatpata", "comfort"],
+    "Soya Chunks Curry": ["spicy"], "Moong Dal & Lauki": ["light"], "Dal Makhani Thali": ["comfort"], "Sambar Rice & Poriyal": ["chatpata", "light"],
+    "Masoor Dal & Baingan Bharta": ["spicy"], "Kala Chana & Jeera Rice": ["spicy"], "Egg Curry & Rice": ["spicy"],
+    "Home-style Chicken Curry": ["spicy", "comfort"], "Fish Curry Rice": ["spicy", "chatpata"], "Keema Matar": ["spicy"],
+    "Pav Bhaji": ["chatpata", "spicy"], "Amritsari Chole Kulche": ["chatpata", "spicy"], "Chilli Paneer & Fried Rice": ["spicy", "chatpata"],
+    "Achari Paneer Thali": ["chatpata", "spicy"], "Andhra Tomato Pappu": ["spicy", "chatpata"], "Chicken Chettinad": ["spicy"], "Egg Masala Fry": ["spicy"],
+    // dinner
+    "Moong Dal Khichdi": ["light", "comfort"], "Dal Palak & Roti": ["light"], "Tawa Paneer Tikka": ["spicy", "chatpata"], "Soya Bhurji Rolls": ["spicy", "chatpata"],
+    "Chana Masala & Roti": ["spicy", "chatpata"], "Daliya Khichdi": ["light", "comfort"], "Mixed Dal & Lauki": ["light"], "Moong Usal": ["chatpata", "spicy"],
+    "Rajma & Roti": ["comfort"], "Kadhai Paneer & Dal": ["spicy"], "Methi Thepla & Dal": ["light", "comfort"], "Egg Bhurji & Dal": ["spicy"],
+    "Egg Curry & Roti": ["spicy", "comfort"], "Tawa Chicken & Roti": ["spicy"], "Chicken Shorba & Sabzi": ["light", "comfort"], "Tawa Fish & Dal": ["spicy", "chatpata"],
+    "Ragda Pattice": ["chatpata"], "Chole Puri": ["chatpata", "spicy"], "Chilli Chicken & Roti": ["spicy", "chatpata"], "Mirchi ka Salan & Dal": ["spicy"],
+    "Masala Pav Bhaji Night": ["chatpata", "spicy"],
+  };
+  Object.values(MEALS).flat().forEach((m) => (m.moods = F[m.name] || []));
+})();

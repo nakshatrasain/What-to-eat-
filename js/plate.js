@@ -39,6 +39,13 @@
     chutneyRed:   { kind: "bowl", small: true, fill: "#c2452d", top: "none" },
     chutneyWhite: { kind: "bowl", small: true, fill: "#eee6d2", top: "specks", tc: "#5a3a1a" },
     achaar:       { kind: "bowl", small: true, fill: "#c4561f", top: "chunks", tc: "#e8a24a" },
+    pavBhaji:     { kind: "bowl", fill: "#c7542a", top: "chunks", tc: "#f2d38a", garnish: true },
+    misal:        { kind: "bowl", fill: "#b8371e", top: "beans", tc: "#7a3a1a", sev: true, garnish: true },
+    chaat:        { kind: "bowl", fill: "#f1e6cf", top: "beans", tc: "#c9a05a", sev: true, pom: true, garnish: true },
+    chilliPaneer: { kind: "bowl", fill: "#5a2a14", top: "cubes", tc: "#f7ecd4", garnish: true },
+    chilliChicken:{ kind: "bowl", fill: "#6b2a12", top: "chunks", tc: "#c9743a", garnish: true },
+    kofta:        { kind: "bowl", fill: "#e2a066", top: "balls", tc: "#b8662a", garnish: true },
+    mirchiSalan:  { kind: "bowl", fill: "#7a5a2a", top: "stripes", tc: "#4f8a3a" },
     chai:         { kind: "cup", fill: "#b07a4f" },
     milk:         { kind: "cup", fill: "#f7f4ec" },
 
@@ -55,7 +62,11 @@
     poha:       { kind: "mound", fill: "#f2d26a", grain: "#f8e4a0", specks: [GARNISH, "#8a5326"] },
     upma:       { kind: "mound", fill: "#eedfb8", grain: "#f7ecd0", specks: ["#d2552f", GARNISH] },
     daliya:     { kind: "mound", fill: "#d8b98a", grain: "#e8d2ac", specks: [GARNISH, "#d2552f"] },
+    kulcha:     { kind: "flat", fill: "#e8b866", spots: "#a8642c", stack: 2, extra: GARNISH },
+    puri:       { kind: "flat", fill: "#e2a84a", spots: "#b8742a", stack: 2 },
+    bhel:       { kind: "mound", fill: "#ecdcb0", grain: "#fbf3dc", specks: [GARNISH, "#c2452d", "#f2c443"] },
     idli:       { kind: "idli" },
+    pav:        { kind: "pav" },
     toast:      { kind: "toast" },
     salad:      { kind: "salad" },
     eggs:       { kind: "eggs" },
@@ -156,11 +167,27 @@
           s += `<ellipse cx="${f(x)}" cy="${f(y)}" rx="${f(r * 0.3)}" ry="${f(r * 0.22)}" fill="${tc}"/><circle cx="${f(x)}" cy="${f(y)}" r="${f(r * 0.13)}" fill="#f2b522"/>`;
         });
         break;
+      case "balls":
+        scatter(rand, 4, r * 0.45).forEach(([x, y]) => {
+          s += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r * 0.24)}" fill="${tc}"/><circle cx="${f(x - r * 0.07)}" cy="${f(y - r * 0.07)}" r="${f(r * 0.08)}" fill="#fff" opacity="0.3"/>`;
+        });
+        break;
       case "rings":
         scatter(rand, 5, r * 0.5).forEach(([x, y]) => {
           s += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r * 0.2)}" fill="#fff8dc" stroke="${tc}" stroke-width="1.5"/><circle cx="${f(x)}" cy="${f(y)}" r="1.2" fill="#c9a85a"/>`;
         });
         break;
+    }
+    if (v.sev) {
+      scatter(rand, 14, r * 0.7).forEach(([x, y, k]) => {
+        const a = k * Math.PI;
+        s += `<line x1="${f(x)}" y1="${f(y)}" x2="${f(x + Math.cos(a) * 4)}" y2="${f(y + Math.sin(a) * 4)}" stroke="#f2b84a" stroke-width="1.6" stroke-linecap="round"/>`;
+      });
+    }
+    if (v.pom) {
+      scatter(rand, 6, r * 0.6).forEach(([x, y]) => {
+        s += `<circle cx="${f(x)}" cy="${f(y)}" r="1.8" fill="#b4233a"/>`;
+      });
     }
     if (v.garnish) {
       scatter(rand, 5, r * 0.55).forEach(([x, y, k]) => {
@@ -239,10 +266,14 @@
       .join("");
   }
 
-  function toast(id, r) {
+  // Toast and pav share a shape; pav is softer, rounder and more golden.
+  function toast(id, r, soft) {
     const w = r * 1.0;
+    const crust = soft ? "#c27a32" : "#a8642c";
+    const crumb = soft ? "#eab463" : "#e0a865";
+    const rad = soft ? 0.32 : 0.18;
     const one = (x, y, rot) =>
-      `<g transform="translate(${f(x)} ${f(y)}) rotate(${rot})"><rect x="${f(-w / 2)}" y="${f(-w / 2)}" width="${f(w)}" height="${f(w)}" rx="${f(w * 0.18)}" fill="#a8642c" filter="url(#${id}-sh)"/><rect x="${f(-w / 2 + 4)}" y="${f(-w / 2 + 4)}" width="${f(w - 8)}" height="${f(w - 8)}" rx="${f(w * 0.14)}" fill="#e0a865"/><rect x="${f(-w / 2 + 4)}" y="${f(-w / 2 + 4)}" width="${f(w - 8)}" height="${f(w - 8)}" rx="${f(w * 0.14)}" fill="url(#${id}-gloss)"/></g>`;
+      `<g transform="translate(${f(x)} ${f(y)}) rotate(${rot})"><rect x="${f(-w / 2)}" y="${f(-w / 2)}" width="${f(w)}" height="${f(w)}" rx="${f(w * rad)}" fill="${crust}" filter="url(#${id}-sh)"/><rect x="${f(-w / 2 + 4)}" y="${f(-w / 2 + 4)}" width="${f(w - 8)}" height="${f(w - 8)}" rx="${f(w * (rad - 0.04))}" fill="${crumb}"/><rect x="${f(-w / 2 + 4)}" y="${f(-w / 2 + 4)}" width="${f(w - 8)}" height="${f(w - 8)}" rx="${f(w * (rad - 0.04))}" fill="url(#${id}-gloss)"/></g>`;
     // the signature -6deg tilt
     return one(-r * 0.3, -r * 0.12, -6) + one(r * 0.32, r * 0.22, -6);
   }
@@ -296,6 +327,7 @@
       case "mound": return mound(id, v, r, rand);
       case "idli": return idli(id, r);
       case "toast": return toast(id, r);
+      case "pav": return toast(id, r, true);
       case "salad": return salad(id, r, rand);
       case "eggs": return eggs(id, r);
       case "tikka": return tikka(id, r, rand);
@@ -317,6 +349,8 @@
   };
 
   let counter = 0;
+
+  window.PLATE_VISUALS = Object.keys(V);
 
   window.plateSVG = function (meal, label) {
     const id = "p" + ++counter;

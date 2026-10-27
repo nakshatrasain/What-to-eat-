@@ -7,6 +7,8 @@ Pick **Breakfast**, **Lunch** or **Dinner** and get three balanced, made-at-home
 - **Balanced by default.** Lunch and dinner are built around dal + roti/rice, and every option shows its protein (per person, approximate). The highest-protein option gets the "Most protein" spot.
 - **Home-cookable only.** Everyday ingredients, with a kitchen tip for each dish.
 - **Veg / + Egg / Everything** preference, remembered on your device.
+- **Yap to it.** Tap the mic (or type) and say what you're craving, in English or Hinglish: *"kuch chatpata for dinner"*, *"something spicy"*, *"halka khana tonight"*, *"paneer for lunch"*. Or tap a craving chip: Chatpata, Spicy, Light, Comfort, Quick, High protein.
+- **It remembers your dishes.** Say *"add Malai Kofta to your memory"* and it joins the rotation, served with dal and roti/rice so the plate stays balanced. *"Malai Kofta hata do"* removes it. Saved on your device.
 - **A little game:** lock in a meal for confetti, fill "Today's plate" for all three meals, close the 60g daily protein ring, and keep your streak going.
 
 ## Run it
@@ -25,4 +27,4 @@ To host it for free, enable **GitHub Pages** on this repo (Settings â†’ Pages â†
 - `css/app.css`: components and layout
 - `js/meals.js`: the meal library. Add your family's favourites here
 - `js/plate.js`: procedural top-down thali illustrations
-- `js/app.js`: app logic
+- `js/app.js`: app logic, including voice and the Hinglish craving parser
