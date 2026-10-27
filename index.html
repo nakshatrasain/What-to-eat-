@@ -80,6 +80,16 @@
         </button>
       </div>
 
+      <form class="yap" id="yap-form" autocomplete="off">
+        <button type="button" class="mic" data-mic aria-label="Speak your craving"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></button>
+        <label class="sr" for="yap-input">Tell us what you're craving</label>
+        <input id="yap-input" type="text" enterkeyhint="go" placeholder="“Kuch chatpata for dinner…”" />
+        <button type="submit" class="yap-go" aria-label="Find meals">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+      <div class="moods" id="moods-home" role="group" aria-label="Pick a craving"></div>
+
       <div class="diet" role="radiogroup" aria-label="Food preference">
         <button role="radio" data-diet="veg"><i class="dot veg"></i>Veg</button>
         <button role="radio" data-diet="egg"><i class="dot egg"></i>+ Egg</button>
@@ -94,6 +104,18 @@
         <div class="bar" aria-hidden="true"><span id="today-bar"></span></div>
         <ol class="slots" id="slots"></ol>
       </section>
+
+      <section class="mine" aria-labelledby="mine-title">
+        <div class="today-head">
+          <h2 id="mine-title">My dishes</h2>
+          <button class="btn-ghost btn-small" id="add-open">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            <span>Add a dish</span>
+          </button>
+        </div>
+        <ul class="mine-list" id="mine-list"></ul>
+        <p class="mine-empty" id="mine-empty">Missing a family favourite? Tap the mic and say <b>“add Malai Kofta”</b>. It joins the rotation.</p>
+      </section>
     </section>
 
     <!-- RESULTS -->
@@ -106,12 +128,15 @@
         <p class="eyebrow" id="results-eyebrow">Lunch</p>
         <h1 class="display display-sm" id="results-title">Lunch, sorted.</h1>
         <p class="quip" id="quip" aria-live="polite">Fresh options, hot off the tawa.</p>
+        <p class="heard" id="heard" hidden></p>
+        <div class="moods" id="moods-results" role="group" aria-label="Change craving"></div>
       </div>
       <div class="cards" id="cards" aria-live="polite" aria-busy="false"></div>
     </section>
   </main>
 
   <div class="actionbar" id="actionbar" hidden>
+    <button class="mic mic-float" data-mic aria-label="Speak your craving"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></button>
     <button class="btn-primary" id="regen">
       <svg class="dice" viewBox="0 0 24 24" aria-hidden="true">
         <rect x="3.5" y="3.5" width="17" height="17" rx="4" />
@@ -133,6 +158,40 @@
       <button class="btn-primary" id="sheet-ok">Let's cook</button>
     </div>
   </dialog>
+
+  <dialog class="listen" id="listen" aria-labelledby="listen-title">
+    <div class="orb" aria-hidden="true"><span></span><span></span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></div>
+    <p class="eyebrow" id="listen-title">Listening…</p>
+    <p class="listen-text" id="listen-text" aria-live="polite">Try “kuch teekha for lunch” or “add Malai Kofta”</p>
+    <button class="btn-ghost" id="listen-stop">Done</button>
+  </dialog>
+
+  <dialog class="sheet add" id="add-sheet" aria-labelledby="add-title">
+    <form id="add-form">
+      <div class="sheet-art add-art" id="add-art"></div>
+      <p class="eyebrow" id="add-title">Add to my dishes</p>
+      <label class="sr" for="add-name">Dish name</label>
+      <input class="add-name" id="add-name" required maxlength="40" placeholder="Dish name" />
+      <fieldset>
+        <legend>When do you eat it?</legend>
+        <div class="chips" id="add-meals"></div>
+      </fieldset>
+      <fieldset>
+        <legend>What's it like?</legend>
+        <div class="chips" id="add-moods"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Type</legend>
+        <div class="chips" id="add-diet"></div>
+      </fieldset>
+      <div class="sheet-actions">
+        <button type="button" class="btn-ghost" id="add-cancel">Cancel</button>
+        <button type="submit" class="btn-primary">Save dish</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <canvas id="confetti" aria-hidden="true"></canvas>
 
